@@ -1,3 +1,5 @@
+import { fonts } from '@/constants/theme';
+import { scale } from '@/utils/styling';
 import { Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -22,11 +24,13 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   text: {
-    fontSize: 16,
+    fontSize: scale(16),
+    fontFamily: fonts.bold,
     color: '#000000',
   },
   link: {
-    fontSize: 16,
+    fontSize: scale(16),
     color: '#208AEF',
+    fontFamily: fonts.medium,
   },
 });
