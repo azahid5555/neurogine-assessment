@@ -62,7 +62,7 @@ export const fonts = {
   extraBold: "PlusJakartaSans_800ExtraBold",
 };
 
-export const spacingx = {
+export const spacingX = {
   _3: scale(3),
   _5: scale(5),
   _7: scale(7),
