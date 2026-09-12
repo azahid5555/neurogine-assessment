@@ -12,7 +12,7 @@ export const getProducts = async (skip = 0, limit = 20) => {
   return response.json();
 };
 
-export const getProductByID = async (id) => {
+export const getProductById = async (id) => {
   const response = await fetch(`${API_BASE_URL}/products/${id}`);
 
   if (!response.ok) {

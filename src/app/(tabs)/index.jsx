@@ -3,6 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import TabHeader from "@/components/TabHeader";
 import { colors, spacingX, spacingY } from "@/constants/theme";
 import useProducts from "@/hooks/useProducts";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -16,6 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ProductListScreen() {
   const [search, setSearch] = useState("");
+  const router = useRouter();
 
   const {
     products,
@@ -79,7 +81,7 @@ export default function ProductListScreen() {
         renderItem={({ item }) => (
           <ProductCard
             product={item}
-            onPress={() => console.log("Product:", item.id)}
+            onPress={() => router.push(`/productSingle/${item.id}`)}
             onFavorite={() => console.log("Favorite:", item.id)}
           />
         )}
