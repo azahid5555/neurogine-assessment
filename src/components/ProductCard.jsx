@@ -10,6 +10,7 @@ export default function ProductCard({ product, onPress, onFavorite }) {
         <Image
           source={{ uri: product.thumbnail }}
           style={styles.image}
+          placeholder={{ blurhash: "LmLg9W-oNGt7~Cs.ofWC4:RkfRR*" }}
           resizeMode="cover"
         />
 
