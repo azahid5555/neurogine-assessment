@@ -2,17 +2,19 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { colors, fonts, radius, spacingX, spacingY } from "@/constants/theme";
 import { scale, verticalScale } from "@/utils/styling";
+import ProductImage from "./ProductImage";
 
 export default function ProductCard({ product, onPress, onFavorite }) {
   return (
     <TouchableOpacity activeOpacity={0.9} style={styles.card} onPress={onPress}>
       <View style={styles.imageContainer}>
-        <Image
+        {/* <Image
           source={{ uri: product.thumbnail }}
           style={styles.image}
           placeholder={{ blurhash: "LmLg9W-oNGt7~Cs.ofWC4:RkfRR*" }}
           resizeMode="cover"
-        />
+        /> */}
+        <ProductImage uri={product.thumbnail} style={styles.image} />
 
         <TouchableOpacity
           activeOpacity={0.7}

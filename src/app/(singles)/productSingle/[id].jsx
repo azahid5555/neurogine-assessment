@@ -1,4 +1,3 @@
-import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
@@ -10,6 +9,7 @@ import {
   View,
 } from "react-native";
 
+import ProductImage from "@/components/ProductImage";
 import { colors, fonts, radius, spacingX, spacingY } from "@/constants/theme";
 import { getProductById } from "@/services/productService";
 import { scale, verticalScale } from "@/utils/styling";
@@ -93,11 +93,10 @@ export default function ProductDetailScreen() {
       >
         {/* Main Image */}
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: product.thumbnail }}
+          <ProductImage
+            uri={product.thumbnail}
             style={styles.mainImage}
             contentFit="contain"
-            transition={200}
           />
         </View>
 

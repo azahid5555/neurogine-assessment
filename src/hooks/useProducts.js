@@ -67,30 +67,32 @@ export default function useProducts() {
     }
   }, []);
 
-  const search = useCallback(
-    async (query) => {
-      try {
-        setLoading(true);
-        setError(null);
+  const search = useCallback(async (query) => {
+    try {
+      setLoading(true);
+      setError(null);
 
-        if (!query.trim()) {
-          await fetchInitialProducts();
-          return;
-        }
-
-        const data = await searchProducts(query, 0, LIMIT);
+      if (!query.trim()) {
+        const data = await getProducts(0, LIMIT);
 
         setProducts(data.products);
         setTotal(data.total);
         setSkip(data.skip + data.products.length);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+
+        return;
       }
-    },
-    [fetchInitialProducts],
-  );
+
+      const data = await searchProducts(query, 0, LIMIT);
+
+      setProducts(data.products);
+      setTotal(data.total);
+      setSkip(data.skip + data.products.length);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     fetchInitialProducts();

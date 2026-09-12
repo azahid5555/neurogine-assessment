@@ -4,7 +4,7 @@ import TabHeader from "@/components/TabHeader";
 import { colors, spacingX, spacingY } from "@/constants/theme";
 import useProducts from "@/hooks/useProducts";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -16,8 +16,16 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ProductListScreen() {
-  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      search(searchText);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchText, search]);
 
   const {
     products,
@@ -27,13 +35,14 @@ export default function ProductListScreen() {
     error,
     loadMore,
     refresh,
+    search,
   } = useProducts();
 
   if (loading && products.length === 0) {
     return (
       <SafeAreaView style={styles.container} edges={["top"]}>
         <TabHeader />
-        <SearchBar value={search} onChangeText={setSearch} />
+        <SearchBar value={searchText} onChangeText={setSearchText} />
 
         <View style={styles.center}>
           <ActivityIndicator size="large" color={colors.primary500} />
@@ -46,7 +55,7 @@ export default function ProductListScreen() {
     return (
       <SafeAreaView style={styles.container} edges={["top"]}>
         <TabHeader />
-        <SearchBar value={search} onChangeText={setSearch} />
+        <SearchBar value={searchText} onChangeText={setSearchText} />
 
         <View style={styles.center}>
           <Text style={styles.errorText}>Something went wrong.</Text>
@@ -66,7 +75,7 @@ export default function ProductListScreen() {
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <TabHeader />
-      <SearchBar value={search} onChangeText={setSearch} />
+      <SearchBar value={searchText} onChangeText={setSearchText} />
       <FlatList
         data={products}
         keyExtractor={(item) => item.id.toString()}
