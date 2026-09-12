@@ -33,6 +33,7 @@ export default function ProductListScreen() {
     loadingMore,
     refreshing,
     error,
+    loadMoreError,
     loadMore,
     refresh,
     search,
@@ -95,7 +96,21 @@ export default function ProductListScreen() {
           />
         )}
         ListFooterComponent={
-          loadingMore ? (
+          loadMoreError ? (
+            <View style={styles.footer}>
+              <Text style={styles.footerError}>
+                Failed to load more products.
+              </Text>
+
+              <TouchableOpacity
+                onPress={loadMore}
+                style={styles.footerRetryButton}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.footerRetryText}>Try Again</Text>
+              </TouchableOpacity>
+            </View>
+          ) : loadingMore ? (
             <View style={styles.footer}>
               <ActivityIndicator color={colors.primary500} />
             </View>
@@ -150,6 +165,26 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   footer: {
+    alignItems: "center",
     paddingVertical: spacingY._20,
+  },
+
+  footerError: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    marginBottom: spacingY._8,
+  },
+
+  footerRetryButton: {
+    paddingHorizontal: spacingX._16,
+    paddingVertical: spacingY._8,
+    borderRadius: 8,
+    backgroundColor: colors.primary500,
+  },
+
+  footerRetryText: {
+    color: colors.white,
+    fontWeight: "600",
+    fontSize: 12,
   },
 });

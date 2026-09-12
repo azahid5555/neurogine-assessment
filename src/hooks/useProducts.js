@@ -10,6 +10,7 @@ export default function useProducts() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
+  const [loadMoreError, setLoadMoreError] = useState(null);
   const [skip, setSkip] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -37,6 +38,7 @@ export default function useProducts() {
 
     try {
       setLoadingMore(true);
+      setLoadMoreError(null);
 
       const data = await getProducts(skip, LIMIT);
 
@@ -44,7 +46,7 @@ export default function useProducts() {
 
       setSkip(data.skip + data.products.length);
     } catch (error) {
-      setError(error.message);
+      setLoadMoreError(error.message);
     } finally {
       setLoadingMore(false);
     }
@@ -54,6 +56,7 @@ export default function useProducts() {
     try {
       setRefreshing(true);
       setError(null);
+      setLoadMoreError(null);
 
       const data = await getProducts(0, LIMIT);
 
@@ -104,6 +107,7 @@ export default function useProducts() {
     loadingMore,
     refreshing,
     error,
+    loadMoreError,
     loadMore,
     refresh,
     search,
