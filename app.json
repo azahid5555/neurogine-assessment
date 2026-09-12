@@ -4,7 +4,7 @@
     "slug": "neurogine-assessment",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/ios-icon.png",
     "scheme": "neurogineassessment",
     "userInterfaceStyle": "automatic",
     "ios": {
@@ -28,7 +28,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#8e6cef",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
