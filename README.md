@@ -17,8 +17,8 @@ The application uses the DummyJSON Products API to display products, support pag
 
 ## Features
 
-- Design tokens
-- Custom font handling
+- Design Tokens
+- Custom Fonts handeling
 - Product listing
 - Two-column product grid
 - Infinite scroll pagination
